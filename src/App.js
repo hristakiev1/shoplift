@@ -1,7 +1,7 @@
 import "./App.css";
 import HomePage from "./pages/homepage/homepage";
 import { Switch, Link, Route } from "react-router-dom";
-import Hats from "./pages/item-pages/hats.component";
+import ShopPage from "./pages/shop-page/shop.component";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <h1>Hello Lifty</h1>
 
       <Switch>
-        <Route path="/hats" component={Hats} />
+        <Route path="/shop" component={ShopPage} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </div>
