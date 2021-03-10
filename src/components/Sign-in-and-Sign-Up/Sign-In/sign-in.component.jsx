@@ -1,6 +1,8 @@
 import { Component } from "react";
 import FormInput from "../../form-input/form-input";
 import "./sign-in.style.scss";
+import CustomButton from "../../custom-button/button.component";
+import { signInWithGoodle } from "../../../firebase/firebase.utils";
 
 class SignIn extends Component {
   constructor(props) {
@@ -21,15 +23,13 @@ class SignIn extends Component {
     const { value, name } = event.target;
 
     this.setState({ [name]: value });
-
-    console.log(this.state);
   };
 
   render() {
     return (
       <div className="sign-in">
         <h2 className="title">I already have an account</h2>
-        <span className="subtitle">Sigh in with your email and password</span>
+        <span className="subtitle">Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit}>
           <FormInput
             label="Email"
@@ -39,7 +39,6 @@ class SignIn extends Component {
             value={this.state.email}
             required
           />
-
           <FormInput
             label="Password"
             type="password"
@@ -48,7 +47,12 @@ class SignIn extends Component {
             value={this.state.password}
             required
           />
-          <button type="submit">Submit</button>
+          <div className="button">
+            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton onClick={signInWithGoodle}>
+              Sign In with Google
+            </CustomButton>
+          </div>
         </form>
       </div>
     );
