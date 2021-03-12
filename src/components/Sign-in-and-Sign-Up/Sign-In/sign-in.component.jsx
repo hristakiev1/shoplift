@@ -47,9 +47,9 @@ class SignIn extends Component {
             value={this.state.password}
             required
           />
-          <div className="button">
+          <div className="buttons">
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton onClick={signInWithGoodle}>
+            <CustomButton isGoogleSignIn onClick={signInWithGoodle}>
               Sign In with Google
             </CustomButton>
           </div>
