@@ -49,3 +49,7 @@ provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
 };
+
+export const signInWithEmailAndPassword = (email, password) => {
+  auth.signInWithEmailAndPassword(email, password);
+};
