@@ -5,7 +5,11 @@ import { Switch, Route } from "react-router-dom";
 import ShopPage from "./pages/shop-page/shop.component";
 import Header from "./components/navbar/navbar.component";
 import SignInSignUpPage from "./pages/sign-in-sign-up-page/sign-in-sign-up-page";
-import { auth } from "./firebase/firebase.utils";
+import {
+  auth,
+  firestore,
+  createUserProfileDocument,
+} from "./firebase/firebase.utils";
 
 class App extends React.Component {
   constructor() {
@@ -18,8 +22,18 @@ class App extends React.Component {
   unsubsriberFromAuth = null;
 
   componentDidMount() {
-    this.unsubsriberFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
+    this.unsubsriberFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapShot) =>
+          this.setState({
+            currentUser: { id: snapShot.id, ...snapShot.data() },
+          })
+        );
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
@@ -29,12 +43,12 @@ class App extends React.Component {
 
   render() {
     const { currentUser } = this.state;
-
+    console.log(currentUser);
     return (
       <div>
         <h1>
           {currentUser
-            ? `Hello ${currentUser.displayName}`
+            ? `Hello ${currentUser.displayName} `
             : "Welcome to Lifty"}
         </h1>
 

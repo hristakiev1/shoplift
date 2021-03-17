@@ -2,7 +2,7 @@ import { Component } from "react";
 import FormInput from "../../form-input/form-input";
 import "./sign-in.style.scss";
 import CustomButton from "../../custom-button/button.component";
-import { signInWithGoodle } from "../../../firebase/firebase.utils";
+import { signInWithGoogle } from "../../../firebase/firebase.utils";
 
 class SignIn extends Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class SignIn extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Send to server");
+
+    console.log("submiited");
   };
 
   handleChange = (event) => {
@@ -30,6 +31,7 @@ class SignIn extends Component {
       <div className="sign-in">
         <h2 className="title">I already have an account</h2>
         <span className="subtitle">Sign in with your email and password</span>
+
         <form onSubmit={this.handleSubmit}>
           <FormInput
             label="Email"
@@ -49,7 +51,7 @@ class SignIn extends Component {
           />
           <div className="buttons">
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton isGoogleSignIn onClick={signInWithGoodle}>
+            <CustomButton isGoogleSignIn onClick={signInWithGoogle}>
               Sign In with Google
             </CustomButton>
           </div>
