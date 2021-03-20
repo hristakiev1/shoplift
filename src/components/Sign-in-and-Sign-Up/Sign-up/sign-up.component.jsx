@@ -8,8 +8,8 @@ import {
 import "./sign-up.style.scss";
 
 class SignUp extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       displayName: "",
       email: "",
@@ -24,6 +24,7 @@ class SignUp extends React.Component {
     const { displayName, email, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
       alert("Password doesn`t match");
+      return;
     }
 
     try {
@@ -47,7 +48,7 @@ class SignUp extends React.Component {
 
   handleChange = (event) => {
     const { value, name } = event.target;
-    this.setState({ [name]: value }, () => console.log(this.state));
+    this.setState({ [name]: value });
   };
 
   render() {

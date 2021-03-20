@@ -5,6 +5,7 @@ import CustomButton from "../../custom-button/button.component";
 import {
   signInWithGoogle,
   signInWithEmailAndPassword,
+  auth,
 } from "../../../firebase/firebase.utils";
 
 class SignIn extends Component {
@@ -23,11 +24,11 @@ class SignIn extends Component {
     const { email, password } = this.state;
 
     try {
-      await signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
 
       this.setState({ email: "", password: "" });
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
 

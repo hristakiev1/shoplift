@@ -25,13 +25,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
-
+    console.log(userAuth);
     const createdAd = new Date();
     try {
       await userRef.set({
         displayName,
         email,
         createdAd,
+
         ...additionalData,
       });
     } catch (err) {
@@ -48,8 +49,4 @@ provider.setCustomParameters({ prompt: "select_account" });
 
 export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
-};
-
-export const signInWithEmailAndPassword = (email, password) => {
-  auth.signInWithEmailAndPassword(email, password);
 };
