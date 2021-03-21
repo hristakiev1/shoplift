@@ -1,7 +1,7 @@
 import "./App.css";
-import React from "react";
+import React, { Component } from "react";
 import HomePage from "./pages/homepage/homepage";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop-page/shop.component";
 import Header from "./components/navbar/navbar.component";
 import SignInSignUpPage from "./pages/sign-in-sign-up-page/sign-in-sign-up-page";
@@ -39,8 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>
-          {console.log(currentUser)}
-          {currentUser
+          {currentUser.displayName
             ? `Hello ${currentUser.displayName}`
             : "Welcome to Lifty"}
         </h1>
@@ -49,7 +48,13 @@ class App extends React.Component {
 
         <Switch>
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInSignUpPage} />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              currentUser ? <Redirect to="/" /> : <SignInSignUpPage />
+            }
+          />
           <Route exact path="/" component={HomePage} />
         </Switch>
       </div>
