@@ -39,7 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>
-          {currentUser.displayName
+          {currentUser
             ? `Hello ${currentUser.displayName}`
             : "Welcome to Lifty"}
         </h1>
