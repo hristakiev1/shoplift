@@ -8,7 +8,7 @@ import "./navbar.style.scss";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   return (
     <div className="header">
       <NavLink to="/" className="logo-container">
@@ -32,13 +32,15 @@ const Header = ({ currentUser }) => {
         )}
         <CartIcon className="options" />
       </div>
-      <CartDropdown />
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart }) => ({
+  // example how to descructure twice
+  currentUser,
+  hidden: cart.hidden,
 });
 
 export default connect(mapStateToProps)(Header);
