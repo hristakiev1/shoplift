@@ -34,14 +34,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser} = this.props;
+    console.log(currentUser)
 
     return (
       <div>
         <h1>
-          {currentUser
-            ? `Hello ${currentUser.displayName}`
-            : "Welcome to Lifty"}
+          {currentUser ? `Hello ${currentUser.displayName}`
+            : "Welcome to Lifty"  
+            }
         </h1>
 
         <Header />
