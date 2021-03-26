@@ -1,14 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/brand-icon/logo.svg";
+import {selectCurrentUser} from "../../redux/user/user-utils/user-selector"
 
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import "./navbar.style.scss";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import {selectHidden} from "../../redux/cart/cart-utils/items-selector"
 
 const Header = ({ currentUser, hidden }) => {
+
   return (
     <div className="header">
       <NavLink to="/" className="logo-container">
@@ -37,10 +40,10 @@ const Header = ({ currentUser, hidden }) => {
   );
 };
 
-const mapStateToProps = ({ user: { currentUser }, cart }) => ({
+const mapStateToProps = (state) => ({
   // example how to descructure twice
-  currentUser,
-  hidden: cart.hidden,
+  currentUser: selectCurrentUser(state),
+  hidden:selectHidden(state),
 });
 
 export default connect(mapStateToProps)(Header);

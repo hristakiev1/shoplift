@@ -8,11 +8,14 @@ import SignInSignUpPage from "./pages/sign-in-sign-up-page/sign-in-sign-up-page"
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.action";
+import {selectCurrentUser} from "./redux/user/user-utils/user-selector"
 
 class App extends React.Component {
   unsubsriberFromAuth = null;
 
   componentDidMount() {
+
+    
     const { setCurrentUser } = this.props;
     this.unsubsriberFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -34,14 +37,17 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser} = this.props;
-    console.log(currentUser)
-
+    
+    let { currentUser} = this.props;
+  
+  
     return (
       <div>
         <h1>
-          {currentUser ? `Hello ${currentUser.displayName}`
-            : "Welcome to Lifty"  
+          {
+          currentUser ?  
+            `Hello ${currentUser.displayName}` :  "Welcome to Lifty"
+         
             }
         </h1>
 
@@ -64,7 +70,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
