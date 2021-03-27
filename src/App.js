@@ -39,14 +39,14 @@ class App extends React.Component {
   render() {
     
     let { currentUser} = this.props;
-  
+  console.log(currentUser)
   
     return (
       <div>
         <h1>
           {
-          currentUser ?  
-            `Hello ${currentUser.displayName}` :  "Welcome to Lifty"
+          currentUser === null || currentUser == "null"?  
+            "Welcome to Lifty"  : `Hello ${currentUser.currentUser.displayName}`
          
             }
         </h1>
