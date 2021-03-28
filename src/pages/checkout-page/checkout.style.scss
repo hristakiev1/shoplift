@@ -1,10 +1,12 @@
 .checkout-page {
-    width: 55%;
+    width: 60%;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 50px auto 0;
+    
+    
   
     .checkout-header {
       width: 100%;
@@ -23,8 +25,15 @@
         }
       }
     }
+
+    .checkout-items {
+        &:last-child {
+            border-bottom: 1px solid grey;
+          }
+    }
   
     .total {
+   
       margin-top: 30px;
       margin-left: auto;
       font-size: 36px;
