@@ -2,7 +2,7 @@ import React from "react"
 import "./checkout.style.scss"
 import {connect} from "react-redux"
 import {selectCartItems, selectTotalPrice} from "../../redux/cart/cart-utils/items-selector"
-import { CheckoutItem } from "../../components/checkout-items/checkout-item.component"
+import  CheckoutItem  from "../../components/checkout-items/checkout-item.component"
 
 
 

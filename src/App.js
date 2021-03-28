@@ -40,7 +40,7 @@ class App extends React.Component {
   render() {
     
     let { currentUser} = this.props;
-  console.log(currentUser)
+
   
     return (
       <div>
