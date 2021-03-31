@@ -1,18 +1,13 @@
 import React, { Component } from "react";
-import SHOP_DATA from "../../database/colection-data";
+
 import CollectionPreview from "../../components/collection/collection-preview.component";
 
-class ShopPage extends Component {
-  state = {
-    collections: [],
-  };
 
-  componentDidMount() {
-    this.setState({ collections: SHOP_DATA });
-  }
+import {connect} from "react-redux"
+import { selectCollections } from "../../redux/collection/collection.selectors";
 
-  render() {
-    const { collections } = this.state;
+const ShopPage =({collections}) =>  {
+  
     return (
       <div className="shop-page">
         {collections.map(({ id, title, items, routeName }) => (
@@ -26,6 +21,10 @@ class ShopPage extends Component {
       </div>
     );
   }
-}
 
-export default ShopPage;
+const mapStateToProps = state => ({
+  collections: selectCollections(state)
+})
+
+
+export default connect(mapStateToProps)(ShopPage);
